@@ -1,13 +1,10 @@
-import React from 'react'
+import "./Styles/index.scss";
 
-
-function App: React.FC =() {
-
-
+function App() {
   return (
     <>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
