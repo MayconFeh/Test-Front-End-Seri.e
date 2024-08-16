@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { ConteinerSearch, SearchBarStyled } from "./SearchBar.styles";
 import img from "../../assets/img/busca/Lupa/Shape@2x.png";
 
@@ -13,20 +13,26 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
-    onSearch(event.target.value);
+  };
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    onSearch(searchQuery);
   };
 
   return (
     <ConteinerSearch>
-        <button>
-            <img src={imglupa} alt="" />
+      <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+        <button type="submit">
+          <img src={imglupa} alt="Buscar" />
         </button>
-      <SearchBarStyled
-        type="text"
-        placeholder="Procure por heróis"
-        value={searchQuery}
-        onChange={handleChange}
-      />
+        <SearchBarStyled
+          type="text"
+          placeholder="Procure por heróis"
+          value={searchQuery}
+          onChange={handleChange}
+        />
+      </form>
     </ConteinerSearch>
   );
 };

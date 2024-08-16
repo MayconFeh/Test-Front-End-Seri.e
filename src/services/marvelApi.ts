@@ -1,14 +1,5 @@
-import { api } from './api';
-
-export interface Character {
-  id: number;
-  name: string;
-  description: string;
-  thumbnail: {
-    path: string;
-    extension: string;
-  };
-}
+import { Character } from "../interfaces/Character.interface";
+import { api } from "./api";
 
 export const fetchCharacters = async (params?: Record<string, any>) => {
   const response = await api.get<{ data: { results: Character[] } }>('characters', {

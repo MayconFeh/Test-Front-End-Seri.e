@@ -1,32 +1,36 @@
 import styled from "styled-components";
 
 export const ConteinerSearch = styled.div`
-    width: 100%;
-   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  max-width: 700px;
+  > form {
     > button {
-        border: none;
-        background-color: transparent;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+      border: none;
+      background-color: transparent;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      left: 1rem;
+      top: 5px;
 
-        > img {
-            width: 100%;
-        }
+      > img {
+        width: 100%;
+      }
     }
+  }
 `;
 
 export const SearchBarStyled = styled.input`
   width: 100%;
-  max-width: 700px;
   height: 40px;
   border-radius: 25px;
   border: none;
@@ -44,7 +48,7 @@ export const SearchBarStyled = styled.input`
 
   @media (max-width: 768px) {
     width: 100%;
-    padding-left: 50px; 
+    padding-left: 50px;
   }
 
   @media (max-width: 480px) {
