@@ -7,7 +7,7 @@ export const StyledHeaderCharacter = styled.header`
   height: 100px;
   padding: 0 1.25rem;
   display: flex;
-  justify-content: ;
+  justify-content: row;
   gap: 20px;
 
   > img {
