@@ -29,12 +29,12 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const loadCharacters = useCallback(async (term?: string) => {
+  const loadCharacters = useCallback(async (searchTerm?: string) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchCharacters(term ? { name: term } : {});
-      setCharacters(data);
+      const data = await fetchCharacters(searchTerm ? { nameStartsWith: searchTerm } : {});
+      setCharacters(data || []); 
     } catch (err) {
       console.error('Error fetching characters:', err);
       setError('Failed to fetch characters');

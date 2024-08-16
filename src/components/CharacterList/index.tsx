@@ -33,9 +33,4 @@ export const ListCharacter = () => {
       )}
     </main>
   );
-  // return (
-  //   <ListCharacterStyled>
-  //     <CardCharacter name="Iron Man" imageSrc="jpg" />
-  //   </ListCharacterStyled>
-  // )
 };

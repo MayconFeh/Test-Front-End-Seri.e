@@ -1,7 +1,7 @@
 import { Character } from "../interfaces/Character.interface";
 import { api } from "./api";
 
-export const fetchCharacters = async (params?: Record<string, any>) => {
+export const fetchCharacters = async (params?: { nameStartsWith?: string }) => {
   const response = await api.get<{ data: { results: Character[] } }>('characters', {
     params,
   });

@@ -5,7 +5,7 @@ export const CardCharacterStyled = styled.li`
   border-bottom: 1px solid #ddd;
   cursor: pointer;
   height: 160px;
-  width: 180px;
+  width: 250px;
   border: none;
   display: flex;
   flex-direction: column;
