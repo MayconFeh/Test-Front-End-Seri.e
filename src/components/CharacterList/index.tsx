@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { CardCharacter } from "./CharacterCard/index";
 import { ListCharacterStyled } from "./CharacterList.styles";
 import { useMarvel } from "../../providers/CharacterContext";
+import { FilterBar } from "../FilterBar";
 
 export const ListCharacter = () => {
   const { characters, loading, searchTerm, fetchCharacters } = useMarvel();
@@ -16,6 +17,7 @@ export const ListCharacter = () => {
 
   return (
     <main>
+      <FilterBar/>
       {loading ? (
         <div className="loadingContainer">
           <div className="loading"></div>
@@ -26,6 +28,9 @@ export const ListCharacter = () => {
             <CardCharacter
               key={character.id}
               name={character.name}
+              id={character.id}
+              description={character.description}
+              thumbnail={character.thumbnail}
               imageSrc={`${character.thumbnail.path}.${character.thumbnail.extension}`}
             />
           ))}

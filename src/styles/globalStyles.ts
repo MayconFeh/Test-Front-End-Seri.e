@@ -22,6 +22,46 @@ body{
 
 }
 
+main {
+  min-width: 75%;
+}
+
+.toggle-btn {
+  background-color: var(--color-grey-3);
+  width: 60px;
+  height: 20px;
+  border-radius: 99px;
+  border: none;
+  outline: none;
+  transition: background-color 0.6 ease,;
+  cursor: pointer;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.70);
+  position: relative;
+
+  >.thumb{
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-color-primary);
+    border-radius: 50%;
+    transform: translateX(0);
+    transition: left 0.15s ease;
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
+
+.toggle-btn.toggled{
+  >.thumb{
+    left: calc(100% - 18px);
+  }
+}
+
+
+
 #root{
   display:flex;
   flex-direction: column;
@@ -84,4 +124,4 @@ body{
   }
 }
 
-`
+`;

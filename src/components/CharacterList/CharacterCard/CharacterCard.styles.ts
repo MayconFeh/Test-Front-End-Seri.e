@@ -16,6 +16,7 @@ export const CardCharacterStyled = styled.li`
     height: 120px;
     border-bottom:solid red;
   }
+  
 `;
 
 export const CardCharacterInfoStyled = styled.div`

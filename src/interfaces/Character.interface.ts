@@ -1,5 +1,5 @@
 export interface Character {
-  id: number;
+  id: string;
   name: string;
   description: string;
   thumbnail: {
@@ -7,5 +7,3 @@ export interface Character {
     extension: string;
   };
 }
-
-
