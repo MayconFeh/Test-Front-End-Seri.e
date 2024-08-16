@@ -6,7 +6,7 @@ export const FilterBarStyled = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
+    
 `
 
 export const FilterBarButtonsContainerStyled = styled.div`

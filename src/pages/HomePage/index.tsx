@@ -4,6 +4,7 @@ import { SearchBar } from "../../components/SearchBar";
 import { HomePageStyled } from "./HomePage.styles";
 import { ListCharacter } from "../../components/CharacterList";
 import { useMarvel } from "../../providers/CharacterContext";
+import { Footer } from "../../components/Footer";
 
 const HomePage = () => {
   const { setSearchTerm } = useMarvel();
@@ -18,6 +19,7 @@ const HomePage = () => {
       <InfoHome />
       <SearchBar onSearch={handleSearch} />
       <ListCharacter />
+      <Footer/>
     </HomePageStyled>
   );
 };

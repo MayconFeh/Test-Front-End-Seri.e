@@ -5,7 +5,7 @@ export const HomePageStyled = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: var(--color-white);
-    padding: 20px;
     gap: 20px;
+    width: 100%;
     
 `

@@ -8,22 +8,22 @@ export const GlobalStyle = createGlobalStyle`
 	--color-grey-1: #404040;
 	--color-grey-2: #8c8c8c;
 	--color-grey-3: #b9b9b9;
-    --color-white:#ffffff ;
+  --color-white:#ffffff ;
 
 }
 
 
 body{
   background-color: var(--color-white);
-  min-height: 100vh;
-  max-width: 100vw;
-  width: 100vw;
+ 
   color:var(--color-color-primary);
 
 }
 
 main {
-  min-width: 75%;
+  min-height: 100vh;
+  max-width: 100vw;
+  width:80vw;
 }
 
 .toggle-btn {
