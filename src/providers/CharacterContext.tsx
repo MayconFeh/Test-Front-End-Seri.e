@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { fetchCharacters, fetchCharacterById, fetchComicsByCharacterId } from '../services/marvelApi';
 import { Character } from '../interfaces/Character.interface';
 
@@ -8,6 +8,8 @@ interface MarvelContextType {
   comics: any[];
   loading: boolean;
   error: string | null;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
   fetchCharacters: (searchTerm?: string) => void;
   fetchCharacterById: (id: string) => void;
   fetchComicsByCharacterId: (id: string) => void;
@@ -25,12 +27,13 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
   const [comics, setComics] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const loadCharacters = useCallback(async (searchTerm?: string) => {
+  const loadCharacters = useCallback(async (term?: string) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchCharacters(searchTerm ? { name: searchTerm } : {});
+      const data = await fetchCharacters(term ? { name: term } : {});
       setCharacters(data);
     } catch (err) {
       console.error('Error fetching characters:', err);
@@ -39,7 +42,6 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
       setLoading(false);
     }
   }, []);
-  
 
   const loadCharacterById = useCallback(async (id: string) => {
     setLoading(true);
@@ -77,6 +79,8 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
         comics,
         loading,
         error,
+        searchTerm,
+        setSearchTerm,
         fetchCharacters: loadCharacters,
         fetchCharacterById: loadCharacterById,
         fetchComicsByCharacterId: loadComicsByCharacterId,

@@ -1,27 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CardCharacter } from "./CharacterCard/index";
 import { ListCharacterStyled } from "./CharacterList.styles";
 import { useMarvel } from "../../providers/CharacterContext";
 
 export const ListCharacter = () => {
-  const { characters, loading, fetchCharacters } = useMarvel();
-  const [searchTerm, setSearchTerm] = useState('');
+  const { characters, loading, searchTerm, fetchCharacters } = useMarvel();
 
   useEffect(() => {
-    fetchCharacters(searchTerm);
+    if (searchTerm !== "") {
+      fetchCharacters(searchTerm);
+    } else {
+      fetchCharacters();
+    }
   }, [searchTerm, fetchCharacters]);
-
-  if (loading) return <p>Loading...</p>;
 
   return (
     <main>
-      
-      <ListCharacterStyled>
-        {characters.map((character) => (
-          <CardCharacter key={character.id} name={character.name} imageSrc={character.thumbnail.extension}>
-          </CardCharacter>
-        ))}
-      </ListCharacterStyled>
+      {loading ? (
+        <div className="loadingContainer">
+          <div className="loading"></div>
+        </div>
+      ) : (
+        <ListCharacterStyled>
+          {characters.map((character) => (
+            <CardCharacter
+              key={character.id}
+              name={character.name}
+              imageSrc={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+            />
+          ))}
+        </ListCharacterStyled>
+      )}
     </main>
   );
+  // return (
+  //   <ListCharacterStyled>
+  //     <CardCharacter name="Iron Man" imageSrc="jpg" />
+  //   </ListCharacterStyled>
+  // )
 };

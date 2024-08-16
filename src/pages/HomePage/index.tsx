@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Header } from "../../components/Header";
 import { InfoHome } from "../../components/CharacterHomeInfos";
 import { SearchBar } from "../../components/SearchBar";
@@ -7,14 +6,10 @@ import { ListCharacter } from "../../components/CharacterList";
 import { useMarvel } from "../../providers/CharacterContext";
 
 const HomePage = () => {
-  const { characters, fetchCharacters } = useMarvel();
+  const { setSearchTerm } = useMarvel();
 
-  useEffect(() => {
-    fetchCharacters();
-  }, [fetchCharacters]);
-
-  const handleSearch = (query: string) => {
-    fetchCharacters(query);
+  const handleSearch = (searchQuery?: string) => {
+    setSearchTerm(searchQuery || '');
   };
 
   return (
@@ -22,7 +17,7 @@ const HomePage = () => {
       <Header />
       <InfoHome />
       <SearchBar onSearch={handleSearch} />
-      <ListCharacter characters={characters} />
+      <ListCharacter />
     </HomePageStyled>
   );
 };

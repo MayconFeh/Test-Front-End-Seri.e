@@ -9,6 +9,7 @@ export const ConteinerSearch = styled.div`
   margin: 20px 0;
   max-width: 700px;
   > form {
+    width: 100%;
     > button {
       border: none;
       background-color: transparent;

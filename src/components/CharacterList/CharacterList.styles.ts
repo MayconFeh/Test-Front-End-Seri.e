@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ListCharacterStyled = styled.ul`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 20px;
     list-style: none;
     padding: 0;
     margin: 0;

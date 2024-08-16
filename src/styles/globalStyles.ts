@@ -33,5 +33,55 @@ body{
 
 }
 
+.loadingContainer{
+  display: flex;
+  flex-direction:column;
+
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+.loading{
+  width: 60px;
+  height: 60px;
+  border-radius:50%;
+  animation: spin 1.2s linear infinite;
+ 
+  &::before,
+  &::after{
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  }
+  &::before{
+    width: 100%;
+    height: 100%;
+   background-image: 
+   linear-gradient(0deg,
+    red 0%,
+    yellow 100%
+    );
+  }
+    &::after{
+      width: 85%;
+    height: 85%;
+    background:white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    }
+
+
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 `
