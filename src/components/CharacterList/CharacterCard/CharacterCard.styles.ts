@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CardCharacterStyled = styled.li`
   
-  border-bottom: 1px solid #ddd;
+  
   cursor: pointer;
   height: 160px;
   width: 250px;
@@ -11,12 +11,23 @@ export const CardCharacterStyled = styled.li`
   flex-direction: column;
   gap: 15px;
 
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, border 0.3s ease;
+
   >img{
     width: 100%;
     height: 120px;
+    display: block;
+    transition: transform 0.3s ease;
     border-bottom:solid red;
   }
-  
+  &:hover {
+    transform: scale(1.05s);
+    border: 2px solid red;
+  }
+
 `;
 
 export const CardCharacterInfoStyled = styled.div`

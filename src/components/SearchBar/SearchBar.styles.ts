@@ -40,7 +40,7 @@ export const SearchBarStyled = styled.input`
   padding-left: 50px;
   font-size: 16px;
   background-color: var(--color-color-primary-2);
-  color: var(--color-color-primary);
+  color: black;
   box-sizing: border-box;
 
   &::placeholder {

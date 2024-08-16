@@ -1,0 +1,30 @@
+import styled from "styled-components";
+
+export const StyledHeaderCharacter = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 0 1.25rem;
+  display: flex;
+  justify-content: ;
+  gap: 20px;
+
+  > img {
+    width: 100px;
+    height: 50px;
+  }
+  > div {
+    > form {
+      > input {
+        background-color: var(--color-white);
+        color: var(--color-color-primary);
+        width: 80%;
+
+        &::placeholder {
+          color: black;
+        }
+      }
+    }
+  }
+`;
