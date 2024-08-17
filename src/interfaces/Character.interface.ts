@@ -6,4 +6,15 @@ export interface Character {
     path: string;
     extension: string;
   };
+  modified: string
+  comics: {
+    available: number;
+    items: {
+      name : string
+    }
+  };
+  series?: {
+    available: number;
+  };
+
 }

@@ -18,11 +18,11 @@ export const StyledHeaderCharacter = styled.header`
     > form {
       > input {
         background-color: var(--color-white);
-        color: var(--color-color-primary);
+        color: black;
         width: 80%;
 
         &::placeholder {
-          color: black;
+          color: var(--color-grey-3);
         }
       }
     }

@@ -27,8 +27,11 @@ export const ListCharacter = () => {
           {characters.map((character) => (
             <CardCharacter
               key={character.id}
+              modified={character.modified}
               name={character.name}
               id={character.id}
+              comics={character.comics}
+              series={character.series}
               description={character.description}
               thumbnail={character.thumbnail}
               imageSrc={`${character.thumbnail.path}.${character.thumbnail.extension}`}
