@@ -2,11 +2,12 @@ import { StyledText } from "../../styles/typography";
 import { FilterBarButtonsContainerStyled, FilterBarStyled } from "./FilterBar.styles";
 import imgHero from "../../assets/img/icones/heroi/noun_Superhero_2227044.png";
 import heartR from "../../assets/img/icones/heart/Path Copy 7@1,5x.png";
+import heartE from "../../assets/img/icones/heart/Path Copy 2.png";
 import { useMarvel } from "../../providers/CharacterContext";
 import { useState } from "react";
 
 const imghero = imgHero;
-const heartRed = heartR;
+
 
 export const FilterBar = () => {
   const { totalCharacters, showFavorites, setShowFavorites } = useMarvel();
@@ -29,7 +30,7 @@ export const FilterBar = () => {
         >
           <div className="thumb"></div>
         </button>
-        <img src={heartRed} alt="" />
+        <img src={toggled ? heartR : heartE } alt="" />
         <StyledText>Somente favoritos</StyledText>
       </FilterBarButtonsContainerStyled>
     </FilterBarStyled>

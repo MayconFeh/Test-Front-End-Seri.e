@@ -18,7 +18,7 @@ export const CharacterDetailStyled = styled.div`
  
 `;
 export const CharacterDetailInFoStyled = styled.div`
-  width: 30%;
+  width: 40%;
   color: black;
   padding: 20px;
   display: flex;

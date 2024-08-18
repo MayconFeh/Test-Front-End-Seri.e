@@ -13,6 +13,7 @@ export const StyledHeaderCharacter = styled.header`
   > img {
     width: 100px;
     height: 50px;
+    cursor: pointer;
   }
   > div {
     > form {

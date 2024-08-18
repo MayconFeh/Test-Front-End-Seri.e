@@ -82,7 +82,7 @@ main {
   height: 100px;
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 60%;
 }
 .loading{
   width: 60px;

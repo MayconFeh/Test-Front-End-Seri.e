@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
 import { fetchCharacters, fetchCharacterById, fetchComicsByCharacterId } from '../services/marvelApi';
 import { Character } from '../interfaces/Character.interface';
 
@@ -37,6 +37,13 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState<Character[]>([]);
+
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  }, []);
 
   const loadCharacters = useCallback(async () => {
     setLoading(true);
@@ -86,12 +93,18 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
       if (prevFavorites.length >= 5) {
         return prevFavorites; 
       }
-      return [...prevFavorites, character];
+      const updatedFavorites = [...prevFavorites, character];
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      return updatedFavorites;
     });
   };
 
   const removeFavorite = (id: string) => {
-    setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.id !== id));
+    setFavorites((prevFavorites) => {
+      const updatedFavorites = prevFavorites.filter((fav) => fav.id !== id);
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
   };
 
   const filteredCharacters = showFavorites

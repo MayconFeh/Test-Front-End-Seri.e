@@ -1,39 +1,39 @@
-import { useEffect } from "react";
-import { CardCharacter } from "./CharacterCard/index";
-import { ListCharacterStyled } from "./CharacterList.styles";
-import { useMarvel } from "../../providers/CharacterContext";
-import { FilterBar } from "../FilterBar";
+import { useEffect } from 'react';
+import { useMarvel } from '../../providers/CharacterContext';
+import { CardCharacter } from './CharacterCard/index';
+import { ListCharacterStyled } from './CharacterList.styles';
+import { FilterBar } from '../FilterBar';
 
 export const ListCharacter = () => {
-  const { characters, loading, searchTerm, fetchCharacters } = useMarvel();
+  const { characters, loading, searchTerm, fetchCharacters, showFavorites, favorites } = useMarvel();
 
   useEffect(() => {
-    if (searchTerm !== "") {
-      fetchCharacters(searchTerm);
-    } else {
-      fetchCharacters();
-    }
+    fetchCharacters(searchTerm || '');
   }, [searchTerm, fetchCharacters]);
-  
+
+  const displayedCharacters = showFavorites
+    ? favorites
+    : characters;
+
   return (
     <main>
-      <FilterBar/>
+      <FilterBar />
       {loading ? (
         <div className="loadingContainer">
           <div className="loading"></div>
         </div>
       ) : (
         <ListCharacterStyled>
-          {characters.map((character) => (
+          {displayedCharacters.map((character) => (
             <CardCharacter
               key={character.id}
-              comics={character.comics}
+              imageSrc={`${character.thumbnail.path}.${character.thumbnail.extension}`}
               name={character.name}
               id={character.id}
-              series={character.series}
               description={character.description}
               thumbnail={character.thumbnail}
-              imageSrc={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              comics={character.comics}
+              series={character.series}
             />
           ))}
         </ListCharacterStyled>

@@ -60,7 +60,15 @@ export const CharacterDetail = () => {
       <CharacterDetailStyled>
         {character ? (
           <CharacterDetailInFoStyled>
-            <CharacterName name={character.name} />
+            <CharacterName
+              name={character.name}
+              comics={character.comics}
+              description={character.description}
+              id={character.id}
+              series={character.series}
+              thumbnail={character.thumbnail}
+              isFavorite
+            />
             <p>{character.description || "No description available"}</p>
             <CharacterSection
               availableComics={character.comics?.available || 0}

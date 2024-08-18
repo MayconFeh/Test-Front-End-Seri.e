@@ -7,6 +7,7 @@ import {
 } from "./CharacterCard.styles";
 import heartBorder from "../../../assets/img/icones/heart/Path Copy 2.png";
 import heartRed from "../../../assets/img/icones/heart/Path Copy 7@1,5x.png";
+import { useNavigate } from "react-router-dom";
 
 interface CardCharacterProps {
   imageSrc: string;
@@ -59,9 +60,14 @@ export const CardCharacter = ({
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/${id}`); 
+  };
   return (
     <CardCharacterStyled>
-      <img src={imageSrc} alt={`Imagem do ${name}`} />
+      <img src={imageSrc} alt={`Imagem do ${name}`}  onClick={handleClick}/>
       <CardCharacterInfoStyled>
         <StyledH3>{name}</StyledH3>
         <button onClick={handleFavoriteToggle}>
