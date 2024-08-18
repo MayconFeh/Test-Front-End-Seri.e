@@ -1,10 +1,10 @@
 import React from "react";
 import { Comic } from "../../interfaces/Comic.interface";
 import { YearComicCharacterStyled } from "./YearComicCharacter.styles";
-import { StyledH2, StyledH3 } from "../../styles/typography";
+import { StyledH3 } from "../../styles/typography";
 
 interface YearComicCharacterProps {
-  comic: Comic | null;
+  comic: Comic[];
 }
 
 const formatBrazilianDate = (isoDate: string) => {
@@ -21,12 +21,14 @@ const formatBrazilianDate = (isoDate: string) => {
 };
 
 const YearComicCharacter: React.FC<YearComicCharacterProps> = ({ comic }) => {
-  const firstComicDate = comic?.dates.length > 0 ? formatBrazilianDate(comic.dates[0].date) : "Data não disponível";
+  const firstComicDate = comic && comic.dates.length > 0
+    ? formatBrazilianDate(comic.dates[0].date)
+    : "Data não disponível";
 
   return (
     <YearComicCharacterStyled>
-        <StyledH3>Último quadrinho:</StyledH3>
-        <p> {firstComicDate}</p>
+      <StyledH3>Último quadrinho:</StyledH3>
+      <p>{firstComicDate}</p>
     </YearComicCharacterStyled>
   );
 };
