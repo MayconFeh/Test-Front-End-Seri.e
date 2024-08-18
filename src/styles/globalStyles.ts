@@ -126,15 +126,14 @@ main {
 
 .comics{
  display: flex;
- justify-content: center;
  flex-direction: column;
- align-items: center;
  width: 90%;
  margin: 0 auto;
  gap: 50px;
  >h2{
   font-size: 20px;
   color: black;
+  margin-left: 50px;
  }
 }
 `;

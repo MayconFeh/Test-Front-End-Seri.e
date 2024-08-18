@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CharacterDetailStyled = styled.div`
   margin-top: 50px;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -31,7 +31,11 @@ export const CharacterDetailInFoStyled = styled.div`
       font-size: 50px;
     }
   }
-
+  >.info-comics{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+  }
 `;
 
 export const CharacterDetailLoadingStyled = styled.div`

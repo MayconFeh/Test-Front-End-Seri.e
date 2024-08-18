@@ -14,7 +14,7 @@ export const ListCharacter = () => {
       fetchCharacters();
     }
   }, [searchTerm, fetchCharacters]);
-
+  
   return (
     <main>
       <FilterBar/>
@@ -27,10 +27,9 @@ export const ListCharacter = () => {
           {characters.map((character) => (
             <CardCharacter
               key={character.id}
-              modified={character.modified}
+              comics={character.comics}
               name={character.name}
               id={character.id}
-              comics={character.comics}
               series={character.series}
               description={character.description}
               thumbnail={character.thumbnail}

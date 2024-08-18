@@ -1,17 +1,18 @@
-
-import { ComicsCharacterCardStyled } from "./ComicsCharacterCard.styles";
-import comicIMG from "../../../assets/img/comic/comic.jpg";
 import { StyledH3 } from "../../../styles/typography";
+import { ComicsCharacterCardStyled } from "./ComicsCharacterCard.styles";
 
 interface ComicsCharacterCardProps {
-  comicName: string;
+  title: string;
+  thumbnail: string
 }
 
-export const ComicsCharacterCard = ({ comicName }: ComicsCharacterCardProps) => {
+export const ComicsCharacterCard = ({ title,thumbnail }: ComicsCharacterCardProps) => {
+    
+    const comicIMG = thumbnail
     return (
-      <ComicsCharacterCardStyled>
-        <img src={comicIMG} alt={comicName} />
-        <StyledH3>{comicName}</StyledH3>
-      </ComicsCharacterCardStyled>
-    );
-  };
+    <ComicsCharacterCardStyled>
+      <img src={comicIMG} alt={title} />
+      <StyledH3>{title}</StyledH3>
+    </ComicsCharacterCardStyled>
+  );
+};

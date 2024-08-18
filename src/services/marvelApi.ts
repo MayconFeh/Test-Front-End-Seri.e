@@ -8,29 +8,30 @@ interface ApiResponse {
   };
 }
 
-export const fetchCharacters = async (params?: { nameStartsWith?: string }): Promise<ApiResponse> => {
-  const response = await api.get<ApiResponse>('characters', {
-    params,
+export const fetchCharacters = async (): Promise<ApiResponse> => {
+  const {data} = await api.get<ApiResponse>('characters', {
+    params:{
+      limit: 20,
+      offset: 1,
+    }
   });
-  return response.data;
+  return data;
 };
 
 export const fetchCharacterById = async (id: string): Promise<Character> => {
-  const response = await api.get<{ data: { results: Character[] } }>(`characters/${id}`);
-  return response.data.data.results[0];
+  const {data} = await api.get<{ data: { results: Character[] } }>(`characters/${id}`);
+  return data.data.results[0];
 };
 
-export const fetchComicsByCharacterId = async (id: string): Promise<any[]> => {
-  const response = await api.get<{ data: { results: any[] } }>(`characters/${id}/comics`);
-  return response.data.data.results;
-};
-
-export const fetchLast10ComicsByCharacterId = async (id: string): Promise<string[]> => {
-  const response = await api.get<{ data: { results: any[] } }>(`characters/${id}/comics`, {
-    params: {
-      limit: 10,
-      orderBy: "-issueNumber"
+export const fetchComicsByCharacterId = async (id: string,): Promise<any[]> => {
+  const {data} = await api.get<{ data: { results: any[] } }>(`characters/${id}/comics`,
+    {
+      params:{
+        limit: 10,
+        orderBy: "-onsaleDate",
+        offset: 1,
+      }
     }
-  });
-  return response.data.data.results.map(comic => comic.title);
+  );
+  return data.data.results;
 };

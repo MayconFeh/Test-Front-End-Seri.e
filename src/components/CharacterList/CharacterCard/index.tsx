@@ -17,12 +17,8 @@ interface CardCharacterProps {
     path: string;
     extension: string;
   };
-  modified: string;
   comics: {
     available: number;
-    items: {
-      name: string;
-    };
   };
   series?: {
     available: number;
@@ -40,7 +36,6 @@ export const CardCharacter = ({
   thumbnail,
   comics,
   series,
-  modified,
 }: CardCharacterProps) => {
   const { favorites, addFavorite, removeFavorite } = useMarvel();
   const [isFavorited, setIsFavorited] = useState<boolean>(false);
@@ -60,7 +55,6 @@ export const CardCharacter = ({
         thumbnail,
         comics,
         series,
-        modified,
       });
     }
   };

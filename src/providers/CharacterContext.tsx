@@ -11,7 +11,7 @@ interface MarvelContextType {
   searchTerm: string;
   totalCharacters: number;
   showFavorites: boolean;
-  favorites: Character[]; // Armazena os favoritos
+  favorites: Character[];
   setSearchTerm: (term: string) => void;
   setShowFavorites: (show: boolean) => void;
   fetchCharacters: (searchTerm?: string) => void;
@@ -36,13 +36,13 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [showFavorites, setShowFavorites] = useState(false);
-  const [favorites, setFavorites] = useState<Character[]>([]); // Armazena os favoritos
+  const [favorites, setFavorites] = useState<Character[]>([]);
 
-  const loadCharacters = useCallback(async (searchTerm?: string) => {
+  const loadCharacters = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchCharacters(searchTerm ? { nameStartsWith: searchTerm } : {});
+      const data = await fetchCharacters();
       setCharacters(data.data.results || []);
       setTotalCharacters(data.data.total || 0);
     } catch (err) {
