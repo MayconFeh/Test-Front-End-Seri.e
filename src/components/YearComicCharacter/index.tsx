@@ -4,7 +4,7 @@ import { YearComicCharacterStyled } from "./YearComicCharacter.styles";
 import { StyledH3 } from "../../styles/typography";
 
 interface YearComicCharacterProps {
-  comic: Comic[];
+  comic: Comic | null;
 }
 
 const formatBrazilianDate = (isoDate: string) => {
@@ -13,6 +13,12 @@ const formatBrazilianDate = (isoDate: string) => {
   ];
 
   const date = new Date(isoDate);
+
+  if (isNaN(date.getTime())) {
+    console.error("Invalid date:", isoDate);
+    return "Data não disponível";
+  }
+
   const day = String(date.getDate()).padStart(2, "0");
   const month = months[date.getMonth()];
   const year = date.getFullYear();
@@ -21,7 +27,7 @@ const formatBrazilianDate = (isoDate: string) => {
 };
 
 const YearComicCharacter: React.FC<YearComicCharacterProps> = ({ comic }) => {
-  const firstComicDate = comic && comic.dates.length > 0
+  const firstComicDate = comic && comic.dates && comic.dates.length > 0
     ? formatBrazilianDate(comic.dates[0].date)
     : "Data não disponível";
 
