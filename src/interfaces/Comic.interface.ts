@@ -5,8 +5,5 @@ export interface Comic {
     path: string;
     extension: string;
   };
-  dates: {
-    type: string;
-    date: Date;
-  };
+  dates: { type: string; date: string }[];
 }
