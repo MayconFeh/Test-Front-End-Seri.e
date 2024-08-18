@@ -34,7 +34,6 @@ export const CharacterDetail = () => {
         await fetchCharacterById(id);
         await fetchComicsByCharacterId(id);
       } catch (error) {
-        console.error("Failed to fetch data:", error);
       }
     }
   }, [id, fetchCharacterById, fetchComicsByCharacterId]);
@@ -67,7 +66,6 @@ export const CharacterDetail = () => {
               id={character.id}
               series={character.series}
               thumbnail={character.thumbnail}
-              isFavorite
             />
             <p>{character.description || "No description available"}</p>
             <CharacterSection

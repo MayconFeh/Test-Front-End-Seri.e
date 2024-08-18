@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CharacterSectionStyled = styled.section`
-  width: 80%;
+  width: 50%;
 
   display: flex;
   flex-direction: row;

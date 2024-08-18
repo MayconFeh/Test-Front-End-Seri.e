@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
 import { fetchCharacters, fetchCharacterById, fetchComicsByCharacterId } from '../services/marvelApi';
 import { Character } from '../interfaces/Character.interface';
+import debounce from 'lodash/debounce'; 
 
 interface MarvelContextType {
   characters: Character[];
@@ -45,20 +46,30 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
     }
   }, []);
 
-  const loadCharacters = useCallback(async () => {
+  const loadCharacters = useCallback(async (searchTerm?: string) => {
     setLoading(true);
     setError(null);
+    
+    const term = searchTerm === 'undefined' ? '' : searchTerm?.trim() || '';
+
     try {
-      const data = await fetchCharacters();
-      setCharacters(data.data.results || []);
-      setTotalCharacters(data.data.total || 0);
+      if (term) {
+        const data = await fetchCharacters(term);
+        setCharacters(data.data.results || []);
+        setTotalCharacters(data.data.total || 0);
+      } else {
+        const data = await fetchCharacters();
+        setCharacters(data.data.results || []);
+        setTotalCharacters(data.data.total || 0);
+      }
     } catch (err) {
-      console.error('Error fetching characters:', err);
       setError('Failed to fetch characters');
     } finally {
       setLoading(false);
     }
   }, []);
+
+  const debouncedLoadCharacters = useCallback(debounce(loadCharacters, 300), [loadCharacters]);
 
   const loadCharacterById = useCallback(async (id: string) => {
     setLoading(true);
@@ -67,7 +78,6 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
       const data = await fetchCharacterById(id);
       setCharacter(data);
     } catch (err) {
-      console.error('Error fetching character:', err);
       setError('Failed to fetch character');
     } finally {
       setLoading(false);
@@ -81,7 +91,6 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
       const data = await fetchComicsByCharacterId(id);
       setComics(data);
     } catch (err) {
-      console.error('Error fetching comics:', err);
       setError('Failed to fetch comics');
     } finally {
       setLoading(false);
@@ -125,7 +134,7 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
         favorites,
         setSearchTerm,
         setShowFavorites,
-        fetchCharacters: loadCharacters,
+        fetchCharacters: debouncedLoadCharacters, // Use the debounced function here
         fetchCharacterById: loadCharacterById,
         fetchComicsByCharacterId: loadComicsByCharacterId,
         addFavorite,

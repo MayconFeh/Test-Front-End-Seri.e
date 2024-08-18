@@ -13,7 +13,7 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSearch(searchQuery || undefined); // Pass undefined if searchQuery is empty
+    onSearch(searchQuery || undefined);
   };
 
   return (
